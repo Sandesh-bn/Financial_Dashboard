@@ -201,7 +201,7 @@ export default function Income() {
               Income over the selected period
             </p>
           </div>
-          <div className="h-[320px]">
+          <div className="h-[160px]">
             <ResponsiveContainer width="100%" height="100%">
               <LineChart data={lineChartData}>
                 <XAxis dataKey="date" tickLine={false} axisLine={false} />
@@ -226,15 +226,15 @@ export default function Income() {
               Category distribution for the selected period
             </p>
           </div>
-          <div className="h-[320px]">
+          <div className="h-[160px]">
             <ResponsiveContainer width="100%" height="100%">
               <PieChart>
                 <Pie
                   data={pieChartData}
                   dataKey="value"
                   nameKey="name"
-                  outerRadius={110}
-                  innerRadius={58}
+                  outerRadius={56}
+                  innerRadius={30}
                   paddingAngle={2}
                 >
                   {pieChartData.map((entry, index) => (

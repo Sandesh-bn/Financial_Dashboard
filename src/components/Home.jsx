@@ -175,18 +175,18 @@ export default function Home() {
           <Card className="p-6">
             <Skeleton className="mb-4 h-6 w-48" />
             <Skeleton className="mb-8 h-4 w-64" />
-            <Skeleton className="h-[380px] w-full" />
+            <Skeleton className="h-[190px] w-full" />
           </Card>
 
           <div className="grid grid-cols-1 gap-4 xl:grid-cols-2">
             <Card className="p-6">
               <Skeleton className="mb-4 h-6 w-48" />
-              <Skeleton className="h-[350px] w-full" />
+              <Skeleton className="h-[175px] w-full" />
             </Card>
 
             <Card className="p-6">
               <Skeleton className="mb-4 h-6 w-48" />
-              <Skeleton className="h-[350px] w-full" />
+              <Skeleton className="h-[175px] w-full" />
             </Card>
           </div>
         </div>
@@ -221,7 +221,7 @@ export default function Home() {
               </p>
             </div>
 
-            <div className="h-[380px] w-full">
+            <div className="h-[190px] w-full">
               <ResponsiveContainer width="100%" height="100%">
                 <AreaChart data={chartData}>
                   <defs>
@@ -303,15 +303,15 @@ function BreakdownCard({ title, subtitle, data, colors }) {
         <p className="text-sm text-zinc-500 dark:text-zinc-400">{subtitle}</p>
       </div>
 
-      <div className="h-[350px]">
+      <div className="h-[175px]">
         <ResponsiveContainer width="100%" height="100%">
           <PieChart>
             <Pie
               data={data}
               dataKey="value"
               nameKey="name"
-              outerRadius={120}
-              innerRadius={65}
+              outerRadius={62}
+              innerRadius={34}
               paddingAngle={2}
             >
               {data.map((entry, index) => (

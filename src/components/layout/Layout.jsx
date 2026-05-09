@@ -7,7 +7,7 @@ export default function Layout() {
   const [darkMode, setDarkMode] = useState(false);
 
   return (
-    <div className={darkMode ? "dark" : ""}>
+    <div className={darkMode ? "dark min-h-screen" : "min-h-screen"}>
       <div className="flex h-screen w-full overflow-hidden bg-gray-50 dark:bg-zinc-950">
 
         {/* SIDEBAR */}
@@ -19,7 +19,7 @@ export default function Layout() {
         />
 
         {/* MAIN CONTENT */}
-        <main className="flex-1 min-h-0 overflow-auto p-6 text-black dark:text-white">
+        <main className="min-h-0 flex-1 overflow-auto p-6 text-black dark:text-white">
           <Outlet />
         </main>
 

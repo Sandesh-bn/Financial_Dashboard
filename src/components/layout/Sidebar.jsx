@@ -23,7 +23,7 @@ export default function Sidebar({
     <motion.aside
       animate={{ width: collapsed ? 72 : 260 }}
       transition={{ duration: 0.25, ease: "easeInOut" }}
-      className="h-full border-r dark:border-zinc-800 bg-white dark:bg-zinc-900 flex flex-col"
+      className="flex h-full shrink-0 flex-col border-r bg-white dark:border-zinc-800 dark:bg-zinc-900"
     >
       {/* TOP BAR */}
       <div className="h-14 flex items-center justify-between px-3 border-b dark:border-zinc-800">
@@ -39,8 +39,8 @@ export default function Sidebar({
             key={item.path}
             to={item.path}
             className={({ isActive }) =>
-              `relative flex items-center gap-3 px-3 py-2 rounded-md transition-all
-              ${isActive ? "text-emerald-600 dark:text-emerald-400" : "text-muted-foreground hover:text-foreground"}`
+              `group relative flex items-center gap-3 rounded-md px-3 py-2 transition-all
+              ${isActive ? "active text-emerald-600 dark:text-emerald-400" : "text-muted-foreground hover:text-foreground"}`
             }
           >
             {/* ACTIVE STRIPE BAR */}

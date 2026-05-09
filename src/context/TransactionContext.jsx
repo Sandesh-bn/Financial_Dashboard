@@ -2,7 +2,7 @@ import { createContext, useContext, useEffect, useMemo, useState } from "react";
 import { useAuth } from "./AuthContext";
 
 const TransactionContext = createContext();
-const API_BASE_URL = "http://localhost:4000/api";
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 function withType(items, type) {
   return items.map((item) => ({

@@ -304,10 +304,10 @@ export default function Expense() {
 
 function TransactionRow({ item }) {
   return (
-    <div className="grid gap-2 p-4 text-sm md:grid-cols-[1fr_140px_140px_130px] md:items-center">
+    <div className="grid gap-1 px-4 py-2 text-sm md:grid-cols-[1fr_140px_140px_130px] md:items-center">
       <div>
         <p className="font-medium">{item.description}</p>
-        <p className="text-xs text-zinc-500">{item.category}</p>
+        <p className="text-xs leading-tight text-zinc-500">{item.category}</p>
       </div>
       <p className="font-semibold text-red-500">
         ${item.amount.toLocaleString()}
@@ -315,7 +315,7 @@ function TransactionRow({ item }) {
       <p className="text-zinc-500">
         {new Date(item.date).toLocaleDateString()}
       </p>
-      <p className="text-xs uppercase tracking-wide text-zinc-400">
+      <p className="text-xs uppercase leading-tight tracking-wide text-zinc-400">
         {item.type}
       </p>
     </div>

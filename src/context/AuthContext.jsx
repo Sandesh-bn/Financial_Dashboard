@@ -27,8 +27,10 @@ export function AuthProvider({ children }) {
   }, []);
 
   // 🔐 LOGIN
+  const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+
   async function login({ name, email, password }) {
-    const res = await fetch("http://localhost:4000/api/user/login", {
+    const res = await fetch(API_BASE_URL + "/user/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
@@ -53,8 +55,9 @@ export function AuthProvider({ children }) {
     navigate("/");
   }
 
+
   async function register({ name, email, password }) {
-    const res = await fetch("http://localhost:4000/api/user/register", {
+    const res = await fetch(API_BASE_URL + "/user/register", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"

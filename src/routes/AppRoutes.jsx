@@ -8,6 +8,7 @@ import Expense from "../components/Expense";
 import Profile from "../components/Profile";
 import ProtectedRoute from "./ProtectedRoute";
 import { useAuth } from "../context/AuthContext";
+import { TransactionProvider } from "../context/TransactionContext";
 
 export default function AppRoutes() {
   const { user, loading } = useAuth();
@@ -23,7 +24,9 @@ export default function AppRoutes() {
         path="/"
         element={
           <ProtectedRoute user={user} loading={loading}>
-            <Layout />
+            <TransactionProvider>
+              <Layout />
+            </TransactionProvider>
           </ProtectedRoute>
         }
       >

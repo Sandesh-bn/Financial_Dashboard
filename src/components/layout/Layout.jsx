@@ -5,10 +5,10 @@ import { useState } from "react";
 export default function Layout() {
   const [collapsed, setCollapsed] = useState(false);
   const [darkMode, setDarkMode] = useState(true);
-
+  const backgroundScheme = darkMode? "green-gradient": "blue-gradient";
   return (
     <div className={darkMode ? "dark min-h-screen" : "min-h-screen"}>
-      <div className="flex h-screen w-full overflow-hidden bg-gray-50 dark:bg-zinc-950">
+      <div className={`${backgroundScheme} flex h-screen w-full overflow-hidden bg-gray-50 dark:bg-zinc-950`}>
 
         {/* SIDEBAR */}
         <Sidebar

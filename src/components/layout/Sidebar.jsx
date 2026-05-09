@@ -5,12 +5,7 @@ import { Button } from "@/components/ui/button";
 import { useAuth } from "../../context/AuthContext";
 import { Home, TrendingUp, TrendingDown, User } from "lucide-react";
 
-const navItems = [
-    { label: "Home", path: "/", icon: Home },
-    { label: "Income", path: "/income", icon: TrendingUp },
-    { label: "Expense", path: "/expense", icon: TrendingDown },
-    { label: "Profile", path: "/profile", icon: User },
-];
+
 
 export default function Sidebar({
     collapsed,
@@ -19,6 +14,16 @@ export default function Sidebar({
     setDarkMode,
 }) {
     const { logout } = useAuth();
+    const { user } = useAuth();
+
+    const username = user?.name + "'s profile" || "Profile";
+
+    const navItems = [
+        { label: "Home", path: "/", icon: Home },
+        { label: "Income", path: "/income", icon: TrendingUp },
+        { label: "Expense", path: "/expense", icon: TrendingDown },
+        { label: username, path: "/profile", icon: User },
+    ];
 
     return (
         <motion.aside

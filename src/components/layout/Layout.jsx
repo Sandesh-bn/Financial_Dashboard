@@ -4,7 +4,7 @@ import { useState } from "react";
 
 export default function Layout() {
   const [collapsed, setCollapsed] = useState(false);
-  const [darkMode, setDarkMode] = useState(false);
+  const [darkMode, setDarkMode] = useState(true);
 
   return (
     <div className={darkMode ? "dark min-h-screen" : "min-h-screen"}>

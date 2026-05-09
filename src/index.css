@@ -156,6 +156,12 @@
   border-color: #47fd6e;
 }
 
+.blue-gradient {
+  background: linear-gradient(180deg, #f6fff5 0, #e8fafe 30%, #ffffff 100%);
+  border-color: #47bafd;
+}
+
+
 .dark .yellow-gradient {
   background: linear-gradient(
     180deg,
@@ -174,4 +180,15 @@
     #0a0a0a 100%
   );
   border-color: #166534;
+}
+
+
+.dark .blue-gradient {
+  background: linear-gradient(
+    180deg,
+    #06052a 0%,
+    #05041f 30%,
+    #0a0a0a 100%
+  );
+  border-color: #0d1da6;
 }

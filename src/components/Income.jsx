@@ -134,7 +134,7 @@ export default function Income() {
         </p>
       </div>
 
-      <Card className="rounded-2xl border border-zinc-200 bg-white p-6 shadow-sm dark:border-zinc-800 dark:bg-zinc-900">
+      <Card className="blue-gradient rounded-2xl border border-zinc-200 bg-white p-6 shadow-sm dark:border-zinc-800 dark:bg-zinc-900">
         <form onSubmit={handleSubmit} className="grid gap-4 md:grid-cols-5">
           <input
             name="description"

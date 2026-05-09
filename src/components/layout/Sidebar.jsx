@@ -70,7 +70,7 @@ export default function Sidebar({
             <div className="p-2 border-t dark:border-zinc-800 space-y-1">
                 <Button
                     variant="ghost"
-                    className="w-full justify-start gap-2"
+                    className="w-full justify-start gap-2 text-foreground hover:text-foreground"
                     onClick={() => setDarkMode(!darkMode)}
                 >
                     {darkMode ? <Sun size={18} /> : <Moon size={18} />}

@@ -1,6 +1,7 @@
 import { Routes, Route } from "react-router-dom";
 import Layout from "../components/layout/Layout";
 import Login from "../pages/Login";
+import Signup from "../pages/Signup";
 import Home from "../components/Home";
 import Income from "../components/Income";
 import Expense from "../components/Expense";
@@ -15,6 +16,7 @@ export default function AppRoutes() {
     <Routes>
       {/* LOGIN */}
       <Route path="/login" element={<Login />} />
+      <Route path="/signup" element={<Signup />} />
 
       {/* PROTECTED APP */}
       <Route

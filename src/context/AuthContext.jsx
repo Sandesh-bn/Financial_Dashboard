@@ -53,6 +53,35 @@ export function AuthProvider({ children }) {
     navigate("/");
   }
 
+  async function register({ name, email, password }) {
+    const res = await fetch("http://localhost:4000/api/user/register", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ name, email, password })
+    });
+
+    if (!res.ok) {
+      throw new Error("Registration failed");
+    }
+
+    const data = await res.json();
+
+    if (data.token && data.user) {
+      localStorage.setItem("token", data.token);
+      localStorage.setItem("user", JSON.stringify(data.user));
+
+      setToken(data.token);
+      setUser(data.user);
+
+      navigate("/");
+      return;
+    }
+
+    navigate("/login");
+  }
+
   function logout() {
     localStorage.removeItem("token");
     localStorage.removeItem("user");
@@ -64,7 +93,7 @@ export function AuthProvider({ children }) {
   }
 
   return (
-    <AuthContext.Provider value={{ user, token, login, logout, loading }}>
+    <AuthContext.Provider value={{ user, token, login, register, logout, loading }}>
       {children}
     </AuthContext.Provider>
   );

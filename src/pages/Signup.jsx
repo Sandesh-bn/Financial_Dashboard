@@ -2,8 +2,8 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 
-export default function Login() {
-  const { login } = useAuth();
+export default function Signup() {
+  const { register } = useAuth();
 
   const [form, setForm] = useState({
     name: "",
@@ -22,9 +22,9 @@ export default function Login() {
     setLoading(true);
 
     try {
-      await login(form);
+      await register(form);
     } catch (err) {
-      alert("Login failed");
+      alert("Registration failed");
       console.error(err);
     } finally {
       setLoading(false);
@@ -37,7 +37,7 @@ export default function Login() {
         onSubmit={handleSubmit}
         className="w-full max-w-sm space-y-4 rounded bg-white p-6 shadow"
       >
-        <h1 className="text-xl font-bold">Login</h1>
+        <h1 className="text-xl font-bold">Sign up</h1>
 
         <input
           name="name"
@@ -45,6 +45,7 @@ export default function Login() {
           className="w-full rounded border p-2"
           value={form.name}
           onChange={handleChange}
+          required
         />
 
         <input
@@ -54,6 +55,7 @@ export default function Login() {
           className="w-full rounded border p-2"
           value={form.email}
           onChange={handleChange}
+          required
         />
 
         <input
@@ -63,19 +65,20 @@ export default function Login() {
           className="w-full rounded border p-2"
           value={form.password}
           onChange={handleChange}
+          required
         />
 
         <button
           disabled={loading}
           className="w-full rounded bg-black p-2 text-white disabled:opacity-60"
         >
-          {loading ? "Logging in..." : "Login"}
+          {loading ? "Creating account..." : "Create account"}
         </button>
 
         <p className="text-center text-sm text-gray-600">
-          Need an account?{" "}
-          <Link to="/signup" className="font-medium text-black underline">
-            Sign up
+          Already have an account?{" "}
+          <Link to="/login" className="font-medium text-black underline">
+            Login
           </Link>
         </p>
       </form>

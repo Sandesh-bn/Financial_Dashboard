@@ -13,13 +13,22 @@ import { TransactionProvider } from "../context/TransactionContext";
 export default function AppRoutes() {
   const { user, loading } = useAuth();
 
+  // 🚨 BLOCK RENDER UNTIL AUTH IS READY
+  if (loading) {
+    return (
+      <div className="h-screen flex items-center justify-center text-sm text-zinc-500">
+        Loading app...
+      </div>
+    );
+  }
+
   return (
     <Routes>
-      {/* LOGIN */}
+      {/* PUBLIC ROUTES */}
       <Route path="/login" element={<Login />} />
       <Route path="/signup" element={<Signup />} />
 
-      {/* PROTECTED APP */}
+      {/* PROTECTED ROUTE WRAPPER */}
       <Route
         path="/"
         element={

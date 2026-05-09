@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect, useState } from "react";
+import { createContext, useContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 const AuthContext = createContext();
@@ -6,97 +6,70 @@ const AuthContext = createContext();
 export function AuthProvider({ children }) {
   const navigate = useNavigate();
 
-  const [user, setUser] = useState(undefined);
-  const [token, setToken] = useState(undefined);
-  const [loading, setLoading] = useState(true);
+  // ✅ instant hydration (NO undefined state bugs)
+  const [user, setUser] = useState(() => {
+    const stored = localStorage.getItem("user");
+    return stored ? JSON.parse(stored) : null;
+  });
 
-  // 🔥 hydrate auth on refresh
-  useEffect(() => {
-    const storedUser = localStorage.getItem("user");
-    const storedToken = localStorage.getItem("token");
+  const [token, setToken] = useState(() => {
+    return localStorage.getItem("token") || null;
+  });
 
-    if (storedUser && storedToken) {
-      setUser(JSON.parse(storedUser));
-      setToken(storedToken);
-    } else {
-      setUser(null);
-      setToken(null);
-    }
-
-    setLoading(false);
-  }, []);
+  const [loading, setLoading] = useState(false);
 
   // 🔐 LOGIN
-  const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
-
   async function login({ name, email, password }) {
-    const res = await fetch(API_BASE_URL + "/user/login", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({ name, email, password })
-    });
+    setLoading(true);
 
-    if (!res.ok) {
-      throw new Error("Login failed");
-    }
+    try {
+      const res = await fetch(
+        `${import.meta.env.VITE_API_BASE_URL}/user/login`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ name, email, password }),
+        }
+      );
 
-    const data = await res.json();
-    console.log("DATA")
+      const data = await res.json();
 
-    // assuming API returns: { token, user }
-    localStorage.setItem("token", data.token);
-    localStorage.setItem("user", JSON.stringify(data.user));
+      if (!res.ok) throw new Error(data.message || "Login failed");
 
-    setToken(data.token);
-    setUser(data.user);
-
-    navigate("/");
-  }
-
-
-  async function register({ name, email, password }) {
-    const res = await fetch(API_BASE_URL + "/user/register", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({ name, email, password })
-    });
-
-    if (!res.ok) {
-      throw new Error("Registration failed");
-    }
-
-    const data = await res.json();
-
-    if (data.token && data.user) {
-      localStorage.setItem("token", data.token);
-      localStorage.setItem("user", JSON.stringify(data.user));
-
-      setToken(data.token);
       setUser(data.user);
+      setToken(data.token);
+
+      localStorage.setItem("user", JSON.stringify(data.user));
+      localStorage.setItem("token", data.token);
 
       navigate("/");
-      return;
+    } finally {
+      setLoading(false);
     }
-
-    navigate("/login");
   }
 
+  // 🚪 LOGOUT
   function logout() {
-    localStorage.removeItem("token");
-    localStorage.removeItem("user");
-
-    setToken(null);
     setUser(null);
+    setToken(null);
+
+    localStorage.removeItem("user");
+    localStorage.removeItem("token");
 
     navigate("/login");
   }
 
   return (
-    <AuthContext.Provider value={{ user, token, setUser, login, register, logout, loading }}>
+    <AuthContext.Provider
+      value={{
+        user,
+        token,
+        login,
+        logout,
+        loading,
+        setUser,
+      }}
+    >
       {children}
     </AuthContext.Provider>
   );

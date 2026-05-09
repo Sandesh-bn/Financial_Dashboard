@@ -3,6 +3,10 @@
 @import "shadcn/tailwind.css";
 @import "@fontsource-variable/inter";
 
+* {
+  transition: background 150ms ease, color 150ms ease;
+}
+
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {

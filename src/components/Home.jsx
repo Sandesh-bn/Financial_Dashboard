@@ -16,6 +16,7 @@ import {
   Pie,
   Cell
 } from "recharts";
+import { ArrowDown, ArrowUp, DollarSign, Wallet } from "lucide-react";
 
 function Skeleton({ className = "" }) {
   return (
@@ -196,18 +197,23 @@ export default function Home() {
             <StatCard
               label="Total Income"
               value={totalIncome}
+              background="green-gradient"
+              icon={DollarSign}
               caption="Positive cash flow"
               captionClassName="text-emerald-600 dark:text-emerald-400"
             />
             <StatCard
               label="Total Expense"
               value={totalExpense}
+              icon={ArrowDown}
               caption="Spending tracked"
+              background="yellow-gradient"
               captionClassName="text-red-500"
             />
             <StatCard
               label="Net Balance"
               value={netBalance}
+              icon={Wallet}
               caption="Financial health"
               captionClassName="text-emerald-600 dark:text-emerald-400"
             />
@@ -281,15 +287,38 @@ export default function Home() {
   );
 }
 
-function StatCard({ label, value, caption, captionClassName }) {
+
+function StatCard({
+  label,
+  value,
+  caption,
+  captionClassName,
+  background = "",
+  icon: Icon, // 👈 add icon prop
+}) {
   return (
-    <Card className="rounded-2xl border border-zinc-200 bg-white p-6 shadow-sm dark:border-zinc-800 dark:bg-zinc-900">
+    <Card
+      className={`relative rounded-2xl border border-zinc-200 bg-white p-6 shadow-sm dark:border-zinc-800 dark:bg-zinc-900 ${background}`}
+    >
+      {/* TOP RIGHT ICON */}
+      {Icon && (
+        <div className="absolute top-4 right-4 text-zinc-400 dark:text-zinc-500">
+          <Icon size={20} />
+        </div>
+      )}
+
       <div className="space-y-2">
-        <p className="text-sm text-zinc-500 dark:text-zinc-400">{label}</p>
+        <p className="text-sm text-zinc-500 dark:text-zinc-400">
+          {label}
+        </p>
+
         <h2 className="text-3xl font-bold tracking-tight">
           ${value.toLocaleString()}
         </h2>
-        <p className={`text-sm ${captionClassName}`}>{caption}</p>
+
+        <p className={`text-sm ${captionClassName}`}>
+          {caption}
+        </p>
       </div>
     </Card>
   );

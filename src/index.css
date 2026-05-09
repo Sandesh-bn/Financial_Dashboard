@@ -145,3 +145,33 @@
     font-family: var(--font-sans);
   }
 }
+
+.yellow-gradient {
+  background: linear-gradient(180deg, #fffef5 0, #fefce8 30%, #ffffff 100%);
+  border-color: #fde047;
+}
+
+.green-gradient {
+  background: linear-gradient(180deg, #f6fff5 0, #e8fee8 30%, #ffffff 100%);
+  border-color: #47fd6e;
+}
+
+.dark .yellow-gradient {
+  background: linear-gradient(
+    180deg,
+    #2a2500 0%,
+    #1f1a00 30%,
+    #0a0a0a 100%
+  );
+  border-color: #a16207;
+}
+
+.dark .green-gradient {
+  background: linear-gradient(
+    180deg,
+    #052a10 0%,
+    #041f0c 30%,
+    #0a0a0a 100%
+  );
+  border-color: #166534;
+}

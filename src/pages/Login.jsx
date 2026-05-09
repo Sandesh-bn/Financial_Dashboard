@@ -78,6 +78,7 @@ export default function Login() {
             Sign up
           </Link>
         </p>
+        <p>Try john@gmail.com:12345678 for prepopulated data</p>
       </form>
     </div>
   );
